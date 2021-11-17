@@ -1,27 +1,38 @@
 package com.metinkuzey.northwind.entities.concretes;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data//Added for lombok usage
 @Entity
 @Table(name = "products")
+@AllArgsConstructor//Added for lombok usage --> with all items
+@NoArgsConstructor//Added for lombok usage --> empty constructor
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
     private int id;
 
     @Column(name = "category_id")
     private int categoryId;
+
     @Column(name = "product_name")
     private String productName;
+
     @Column(name = "unit_price")
     private double unitPrice;
+
     @Column(name = "units_in_stock")
     private short unitsInStock;
+
     @Column(name = "quantity_per_unit")
     private String quantityPerUnit;
-
-    public Product() {
+// If we don't want to use lombok, we don't need these blocks.
+    /*public Product() {
     }
 
     public Product(int id, int categoryId, String productName, double unitPrice, short unitsInStock, String quantityPerUnit) {
@@ -79,5 +90,5 @@ public class Product {
 
     public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
-    }
+    }*/
 }

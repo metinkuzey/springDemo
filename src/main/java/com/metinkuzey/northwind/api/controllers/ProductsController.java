@@ -1,11 +1,11 @@
 package com.metinkuzey.northwind.api.controllers;
 
 import com.metinkuzey.northwind.business.abstracts.ProductService;
+import com.metinkuzey.northwind.core.utilities.results.DataResult;
+import com.metinkuzey.northwind.core.utilities.results.Result;
 import com.metinkuzey.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,12 +16,18 @@ public class ProductsController {
     private ProductService productService;
     @Autowired
     public ProductsController(ProductService productService) {
-        super();
+        super ();
         this.productService = productService;
     }
 
     @GetMapping("/getAll")
-    List<Product> getAll(){
+    DataResult<List<Product>> getAll(){
         return this.productService.getAll();
     }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody Product product){
+        return this.productService.add(product);
+    }
+
 }
