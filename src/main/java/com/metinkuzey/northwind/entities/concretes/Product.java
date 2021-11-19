@@ -14,11 +14,11 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     private int id;
 
-    @Column(name = "category_id")
-    private int categoryId;
+//    @Column(name = "category_id")
+//    private int categoryId;
 
     @Column(name = "product_name")
     private String productName;
@@ -31,6 +31,10 @@ public class Product {
 
     @Column(name = "quantity_per_unit")
     private String quantityPerUnit;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 // If we don't want to use lombok, we don't need these blocks.
     /*public Product() {
     }
